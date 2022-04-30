@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width" />
+  
+  <title>Websanova :: wScratchPad</title>
+  <script type="text/javascript" src="./src/jquery.1.11.0.min.js"></script>
+</head>
+<body>
+      <div id="demo1" class="scratchpad"></div>
+      <style>
+        .scratchpad {
+        width: 450px;
+        height: 445px;
+        border: solid 10px #FFFFFF;
+        margin: 0 auto;
+    }
+
+    body {
+        user-select: none;
+        background-image: url('./images/children.jpg');
+    }
+      </style>
+
+      <script type="text/javascript" src="./src/wScratchPad.js"></script>
+      <script type="text/javascript">
+        $('#demo1').wScratchPad({
+          bg: './images/winner.png',
+          fg: './images/scratch-to-win.png',
+          size: 30
+        });
+      </script>
+      
+    </div>
+  </div>
+</body>
+</html>
