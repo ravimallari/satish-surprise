@@ -34,7 +34,7 @@
     $('#canvas-scratch').wScratchPad({
       bg: './images/imagebg.jpg',
       fg: './images/imagefg.jpg',
-      size: 35,
+      size: 45,
       scratchMove: function (e, percent) {
         let audioElement = document.getElementById("audio-element");
         if (percent > 70) {
@@ -47,6 +47,7 @@
         }
         else if (percentageScratched != percent) {
           audioElement.play();
+          percentageScratched = percent;
         }
         else {
           audioElement.pause();
