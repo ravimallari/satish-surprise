@@ -1,55 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width" />
-  
+
   <title>Surprise from CMS</title>
   <script type="text/javascript" src="./src/jquery.1.11.0.min.js"></script>
 </head>
+
 <body>
-      <audio id="audio-element" src="./initilal-audio.mp3" type="audio/mpeg">
-      </audio>
-      <div id="canvas-scratch" class="scratchpad"></div>
-      <style>
-        .scratchpad {
-        width: 450px;
-        height: 450px;
-        border: solid 10px #FFFFFF;
-        margin: 0 auto;
+  <audio id="audio-element" src="./initilal-audio.mp3" type="audio/mpeg">
+  </audio>
+  <div id="canvas-scratch" class="scratchpad"></div>
+  <style>
+    .scratchpad {
+      width: 450px;
+      height: 450px;
+      border: solid 10px #FFFFFF;
+      margin: 0 auto;
     }
 
     body {
-        user-select: none;
-        background-image: url('./images/children.jpg');
+      user-select: none;
+      background-image: url('./images/children.jpg');
     }
-      </style>
+  </style>
 
-      <script type="text/javascript" src="./src/wScratchPad.js"></script>
-      <script type="text/javascript">
-      var percentageScratched = 0;
-        $('#canvas-scratch').wScratchPad({
-          bg: './images/imagebg.jpg',
-          fg: './images/imagefg.jpg',
-          size: 35,
-          scratchMove: function(e, percent){
-              let audioElement = document.getElementById("audio-element");
-            if(percent > 70){
-                audioElement.setAttribute('src', './successful.mp3');
-                audioElement.load();
-                audioElement.play();
-            }
-            else if(percentageScratched != percent){
-                audioElement.play();
-            }
-            else{
-                audioElement.pause();
-            }
+  <script type="text/javascript" src="./src/wScratchPad.js"></script>
+  <script type="text/javascript">
+    var percentageScratched = 0;
+    var isSuccessfull = false;
+    $('#canvas-scratch').wScratchPad({
+      bg: './images/imagebg.jpg',
+      fg: './images/imagefg.jpg',
+      size: 35,
+      scratchMove: function (e, percent) {
+        let audioElement = document.getElementById("audio-element");
+        if (percent > 70) {
+          if (!isSuccessfull) {
+            audioElement.setAttribute('src', './successful.mp3');
+            audioElement.load();
+            audioElement.play();
+            isSuccessfull = true;
           }
-        });
-      </script>
-      
-    </div>
+        }
+        else if (percentageScratched != percent) {
+          audioElement.play();
+        }
+        else {
+          audioElement.pause();
+        }
+        console.log(percentageScratched, percent);
+      }
+    });
+  </script>
+
+  </div>
   </div>
 </body>
+
 </html>
