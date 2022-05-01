@@ -4,15 +4,17 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width" />
   
-  <title>Websanova :: wScratchPad</title>
+  <title>Surprise from CMS</title>
   <script type="text/javascript" src="./src/jquery.1.11.0.min.js"></script>
 </head>
 <body>
-      <div id="demo1" class="scratchpad"></div>
+      <audio id="audio-element" src="./initilal-audio.mp3" type="audio/mpeg">
+      </audio>
+      <div id="canvas-scratch" class="scratchpad"></div>
       <style>
         .scratchpad {
         width: 450px;
-        height: 445px;
+        height: 450px;
         border: solid 10px #FFFFFF;
         margin: 0 auto;
     }
@@ -25,10 +27,25 @@
 
       <script type="text/javascript" src="./src/wScratchPad.js"></script>
       <script type="text/javascript">
-        $('#demo1').wScratchPad({
-          bg: './images/winner.png',
-          fg: './images/scratch-to-win.png',
-          size: 30
+      var percentageScratched = 0;
+        $('#canvas-scratch').wScratchPad({
+          bg: './images/imagebg.jpg',
+          fg: './images/imagefg.jpg',
+          size: 25,
+          scratchMove: (e, percent) => {
+              let audioElement = document.getElementById("audio-element");
+            if(percent > 70){
+                audioElement.setAttribute('src', './successful.mp3');
+                audioElement.load();
+                audioElement.play();
+            }
+            else if(percentageScratched != percent){
+                audioElement.play();
+            }
+            else{
+                audioElement.pause();
+            }
+          }
         });
       </script>
       
