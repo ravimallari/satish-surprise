@@ -52,10 +52,10 @@
           isScratching = true;
         }
       },
-      scratchDown: function (e, percent) {
+      scratchUp: function (e, percent) {
         if(!audioElement)
           return;
-          
+
         audioElement.pause();
         isScratching = false;
       }
