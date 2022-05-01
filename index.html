@@ -29,7 +29,6 @@
 
   <script type="text/javascript" src="./src/wScratchPad.js"></script>
   <script type="text/javascript">
-    var percentageScratched = 0;
     var isSuccessfull = false;
     var isScratching = false;
     $('#canvas-scratch').wScratchPad({
@@ -46,19 +45,14 @@
             isSuccessfull = true;
           }
         }
-        else if (percentageScratched != percent) {
-          if(!isScratching){
-            audioElement.play();
-            isScratching = true;
-          }
-          else{
-            percentageScratched = percent;
-          }
+        else if (!isScratching) {
+          audioElement.play();
+          isScratching = true;
         }
-        else {
-          audioElement.pause();
-          isScratching = false;
-        }
+      },
+      scratchDown: function (e, percent) {
+        audioElement.pause();
+        isScratching = false;
       }
     });
   </script>
