@@ -31,21 +31,20 @@
         $('#canvas-scratch').wScratchPad({
           bg: './images/imagebg.jpg',
           fg: './images/imagefg.jpg',
-          size: 25,
+          size: 35,
           scratchMove: function(e, percent){
-            //   let audioElement = document.getElementById("audio-element");
-            // if(percent > 70){
-            //     audioElement.setAttribute('src', './successful.mp3');
-            //     audioElement.load();
-            //     audioElement.play();
-            // }
-            // else if(percentageScratched != percent){
-            //     audioElement.play();
-            // }
-            // else{
-            //     audioElement.pause();
-            // }
-            console.log(percent);
+              let audioElement = document.getElementById("audio-element");
+            if(percent > 70){
+                audioElement.setAttribute('src', './successful.mp3');
+                audioElement.load();
+                audioElement.play();
+            }
+            else if(percentageScratched != percent){
+                audioElement.play();
+            }
+            else{
+                audioElement.pause();
+            }
           }
         });
       </script>
