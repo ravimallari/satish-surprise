@@ -51,12 +51,14 @@
             audioElement.play();
             isScratching = true;
           }
+          else{
+            percentageScratched = percent;
+          }
         }
         else {
           audioElement.pause();
           isScratching = false;
         }
-        percentageScratched = percent;
       }
     });
   </script>
