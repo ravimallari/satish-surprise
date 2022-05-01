@@ -31,12 +31,14 @@
   <script type="text/javascript">
     var isSuccessfull = false;
     var isScratching = false;
+    var audioElement = document.getElementById("audio-element");
     $('#canvas-scratch').wScratchPad({
       bg: './images/imagebg.jpg',
       fg: './images/imagefg.jpg',
       size: 45,
       scratchMove: function (e, percent) {
-        let audioElement = document.getElementById("audio-element");
+        if(!audioElement)
+          return;
         if (percent > 65) {
           if (!isSuccessfull) {
             audioElement.setAttribute('src', './successful.mp3');
@@ -51,6 +53,9 @@
         }
       },
       scratchDown: function (e, percent) {
+        if(!audioElement)
+          return;
+          
         audioElement.pause();
         isScratching = false;
       }
