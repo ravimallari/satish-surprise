@@ -42,7 +42,7 @@
       flex-direction: column;
       padding: 10px;
       background-color: #FFFFFF;
-      margin: 9% 20%;
+      margin: 5% 20%;
       width: fit-content;
     }
 
@@ -95,7 +95,7 @@
         if (!audioElement)
           return;
 
-        if (!isSuccessfull && !isScratching) {
+        if (!isSuccessfull) {
           audioElement.pause();
           isScratching = false;
         }
