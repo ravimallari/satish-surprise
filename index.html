@@ -22,8 +22,8 @@
 
   <style>
     .scratchpad {
-      width: 450px;
-      height: 450px;
+      width: 30rem;
+      height: 30rem;
       border: solid 5px #FFFFFF;
       margin: 0 auto;
     }
@@ -33,6 +33,18 @@
       background-image: url('./images/background.jpg');
       background-size: cover;
       overflow-y: hidden;
+    }
+
+    @media only screen and (max-width : 580px) {
+      body{
+        background-position: initial;
+      }
+    }
+
+    @media only screen and (max-width : 500px) {
+      body{
+        background-position: center;
+      }
     }
 
     .main-container {
