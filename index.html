@@ -7,23 +7,57 @@
 
   <title>Surprise from CMS</title>
   <script type="text/javascript" src="./src/jquery.1.11.0.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?effect=neon&family=Allison&family=Dancing+Script:wght@500"
+    rel="stylesheet">
 </head>
 
 <body>
   <audio id="audio-element" src="./initilal-audio.mp3" type="audio/mpeg">
   </audio>
-  <div id="canvas-scratch" class="scratchpad"></div>
+  <div class="main-container">
+    <span class="font-effect-neon">Hearty Congratulations!</span>
+    <div id="canvas-scratch" class="scratchpad"></div>
+    <a href="https://www.amazon.in/g/DI3MV9A988DTJE7T" target="_blank" id="link-amazon">Don't forget to click here!</a>
+  </div>
+
   <style>
     .scratchpad {
       width: 450px;
       height: 450px;
-      border: solid 10px #FFFFFF;
+      border: solid 5px #FFFFFF;
       margin: 0 auto;
     }
 
     body {
       user-select: none;
-      background-image: url('./images/backgroundImage.jpg');
+      background-image: url('./images/background.jpg');
+      background-size: cover;
+      overflow-y: hidden;
+    }
+
+    .main-container {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: flex-start;
+      flex-direction: column;
+      padding: 10px;
+      background-color: #FFFFFF;
+      margin: 9% 20%;
+      width: fit-content;
+    }
+
+    .main-container span {
+      font-size: 30px;
+      font-family: 'Dancing Script', cursive;
+      margin: 10px 0px;
+    }
+
+    #link-amazon {
+      font-size: 50px;
+      font-family: 'Allison', cursive;
+      color: #000000;
+      text-decoration: none;
+      display: none;
     }
   </style>
 
@@ -35,32 +69,41 @@
     $('#canvas-scratch').wScratchPad({
       bg: './images/imagebg.jpg',
       fg: './images/imagefg.jpg',
-      size: 45,
+      size: 40,
       scratchMove: function (e, percent) {
-        if(!audioElement)
+        if (!audioElement)
           return;
-        if (percent > 65) {
-          if (!isSuccessfull) {
-            audioElement.setAttribute('src', './successful.mp3');
-            audioElement.load();
-            audioElement.play();
-            isSuccessfull = true;
-          }
+        if (percent > 65 && !isSuccessfull) {
+          audioElement.setAttribute('src', './successful.mp3');
+          audioElement.load();
+          audioElement.play();
+          isSuccessfull = true;
+          document.getElementById('link-amazon').style.display = 'block';
         }
-        else if (!isScratching) {
+
+      },
+      scratchDown: function (e, percent) {
+        if (!audioElement)
+          return;
+
+        if (!isSuccessfull && !isScratching) {
           audioElement.play();
           isScratching = true;
         }
       },
       scratchUp: function (e, percent) {
-        if(!audioElement)
+        if (!audioElement)
           return;
 
-        audioElement.pause();
-        isScratching = false;
+        if (!isSuccessfull && !isScratching) {
+          audioElement.pause();
+          isScratching = false;
+        }
       }
     });
   </script>
+
+
 
   </div>
   </div>
